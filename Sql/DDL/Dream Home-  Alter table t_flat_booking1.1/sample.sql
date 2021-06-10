@@ -1,0 +1,1 @@
+alter table t_flat_booking modify payment_completed varchar(5) not null;

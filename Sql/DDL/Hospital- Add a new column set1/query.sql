@@ -1,0 +1,1 @@
+alter table doctor add column dr_contact_number int(10);
