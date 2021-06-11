@@ -1,3 +1,5 @@
+//update t_hall_detail
+
 SET SQL_SAFE_UPDATES=0;
 UPDATE t_hall_details t
 SET cost_perday  =
@@ -8,6 +10,8 @@ END);
 
 
 <OR>
+
+//update event date
 
 update t_hall_booking set event_date= ( case
 when (event_name='Reception' and year(event_date)=2020) then date_add(event_date, interval 1 day)
