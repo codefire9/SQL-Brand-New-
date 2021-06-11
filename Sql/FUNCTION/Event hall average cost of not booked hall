@@ -1,0 +1,11 @@
+SELECT 
+    city, ROUND(AVG(cost_perday)) 'Average_Cost'
+FROM
+    t_hall_details
+WHERE
+    hall_id NOT IN (SELECT 
+            hall_id
+        FROM
+            t_hall_booking)
+        AND capacity > 100
+GROUP BY city;
