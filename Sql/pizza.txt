@@ -1,0 +1,48 @@
+ DDL DML : <Pizza store : Alter table pizza 1.1 and Update table Pizza 1.2>
+
+ALTER TABLE pizza ADD CONSTRAINT FK1 FOREIGN KEY (cust_id) REFERENCES customer(cust_id);
+ALTER TABLE pizza ADD CONSTRAINT FK2 FOREIGN KEY (partner_id) REFERENCES delivery_partner(partner_id);
+
+
+<UPDATE pizza> 
+set amount  = (amount * 0.95)/100
+Where pizza_type = " Extra Large" ;
+
+
+<highest business date>
+
+select order_date,sum(amount) as Highest_Business from pizza 
+group by order_date order by Highest_Business DESC // LIMIT 1;
+
+
+<highest business customer details>
+
+select pizza.cust_id,customer.cust_name,sum(pizza.amount) as Max_Amount 
+from customer join pizza on customer.cust_id=pizza.cust_id group by pizza.cust_id 
+order by Max_Amount desc limit 1;
+
+
+<delivery partner with detail with rating>
+
+Select partner_id, partner_name, Concat(partner_id, substring(partner_name,1,4)) as NAME,
+Case When rating >= 9 then 'Excellent'
+    When rating >= 7 and rating < 9 then 'Good'
+    When rating < 7 then 'Worst'
+End as FEEDBACK
+FROM delivery_partner
+ORDER BY partner_id;
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
