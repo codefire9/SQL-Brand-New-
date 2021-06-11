@@ -1,0 +1,7 @@
+update T_FLAT_DETAILS set cost = case 
+when( Flat_size= '1BHK' and Floor_name='3') 
+then 
+cost+cost*0.01 
+when (Flat_size='2BHK' and Floor_name='3')
+then cost+cost*0.02 else 
+cost END;
