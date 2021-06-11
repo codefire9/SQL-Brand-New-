@@ -1,0 +1,17 @@
+SET SQL_SAFE_UPDATES=0;
+UPDATE t_hall_details t
+SET cost_perday  =
+(CASE WHEN  t.hall_type ='AC' AND  t.capacity > 100 THEN  cost_perday*1.1
+ WHEN   t.hall_type = 'NonAC' AND  t.capacity >100  THEN  cost_perday*1.05
+ELSE cost_perday
+END);
+
+
+<OR>
+
+update t_hall_booking set event_date= ( case
+when (event_name='Reception' and year(event_date)=2020) then date_add(event_date, interval 1 day)
+when (event_name='Get Together' and year(event_date)=2020) then date_add(event_date,interval 2 day)
+else event_date
+end);
+
