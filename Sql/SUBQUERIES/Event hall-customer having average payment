@@ -1,0 +1,9 @@
+select cd.customer_name,round(avg(hd.cost_perday)) as A from t_customer_details cd join t_hall_booking hb 
+on cd.customer_id=hb.customer_id
+join t_hall_details hd on hd.hall_id=hb.hall_id
+group by cd.customer_name
+having A>(select max(hdd.cost_perday)from t_hall_details hdd join 
+t_hall_booking hbb on hbb.hall_id=hdd.hall_id
+join t_customer_details cdd on cdd.customer_id=hbb.customer_id
+where cdd.customer_name='Suraj Kumar')
+order by A desc;
