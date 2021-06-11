@@ -1,0 +1,22 @@
+SELECT customer_id
+ ,customer_name
+ ,mobile_no
+FROM t_customer_details
+WHERE length(customer_name) > 10
+ AND customer_id IN (
+  SELECT customer_id
+  FROM (
+   SELECT customer_id
+    ,count(hall_id)
+   FROM t_hall_booking
+   GROUP BY customer_id
+   HAVING count(hall_id) > (
+     SELECT count(h.hall_id)
+     FROM t_hall_booking h
+     INNER JOIN t_customer_details c ON c.customer_id = h.customer_id
+     WHERE c.customer_name = 'Suman Singh'
+     GROUP BY h.customer_id
+     )
+   ) AS T1
+  )
+ORDER BY customer_name;
