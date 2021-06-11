@@ -35,7 +35,13 @@ End as FEEDBACK
 FROM delivery_partner
 ORDER BY partner_id;
 
- 
+ Or
+
+select partner_id,partner_name,concat(partner_id,substr(partner_name,1,4)) 
+Name,if(rating>=9,'Excellent',if(rating>=7 and rating<9,'Good','Worst')) as
+ FEEDBACK from delivery_partner order by partner_id;
+
+
 
 <Low and High Cost Pizza>
 Select pizza_name,pizza_type,amount from pizza_type
