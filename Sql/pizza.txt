@@ -5,8 +5,11 @@ ALTER TABLE pizza ADD CONSTRAINT FK2 FOREIGN KEY (partner_id) REFERENCES deliver
 
 
 <UPDATE pizza> 
-set amount  = (amount * 0.95)/100
+UPDATE pizza set amount  = (amount * 0.95)/100
 Where pizza_type = " Extra Large" ;
+<or>
+UPDATE pizza set amount  =  0.96*amount Where pizza_type = " Extra Large" ;
+
 
 
 <highest business date>
@@ -34,11 +37,11 @@ ORDER BY partner_id;
 
  
 
-
-
-
-
-
+<Low and High Cost Pizza>
+Select pizza_name,pizza_type,amount from pizza_type
+where amount IN (select MAX(amount) from pizza) OR 
+amount IN  (select MIN(amount) from pizza)
+LIMIT 2;
 
 
 
